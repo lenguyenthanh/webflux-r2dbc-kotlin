@@ -43,6 +43,7 @@ dependencies {
 	testImplementation("io.mockk:mockk:$mockkVersion")
 	testImplementation("org.testcontainers:postgresql:1.14.3")
 	testImplementation("org.testcontainers:mysql:1.14.3")
+	testImplementation("org.assertj:assertj-core:3.21.0")
 }
 
 tasks.withType<Test> {

@@ -58,7 +58,7 @@ class WebfluxR2dbcKotlinApplicationIT(
 
             assertThat(response)
                 .isNotNull()
-//                .allSatisfy { assertThat(it).isIn(usersList) }
+                .allMatch { usersList.contains(it) }
         }
 
         @Test
@@ -120,11 +120,9 @@ class WebfluxR2dbcKotlinApplicationIT(
 
             assertThat(response)
                 .isNotNull()
-//                .allSatisfy { user ->
-//                    assertThat(user).isIn(
-//                        usersList.filter { it.email == "test2@users.com" }
-//                    )
-//                }
+                .allMatch { usersList
+                    .filter { it.email == "test2@users.com" }
+                    .contains(it) }
         }
 
         @Test
