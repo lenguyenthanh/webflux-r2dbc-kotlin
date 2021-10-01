@@ -5,10 +5,10 @@ import net.razvan.poc.springboot.webfluxr2dbckotlin.user.UserHandler
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.io.ClassPathResource
-import org.springframework.data.r2dbc.connectionfactory.init.CompositeDatabasePopulator
-import org.springframework.data.r2dbc.connectionfactory.init.ConnectionFactoryInitializer
-import org.springframework.data.r2dbc.connectionfactory.init.ResourceDatabasePopulator
 import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories
+import org.springframework.r2dbc.connection.init.CompositeDatabasePopulator
+import org.springframework.r2dbc.connection.init.ConnectionFactoryInitializer
+import org.springframework.r2dbc.connection.init.ResourceDatabasePopulator
 import org.springframework.web.reactive.function.server.coRouter
 
 

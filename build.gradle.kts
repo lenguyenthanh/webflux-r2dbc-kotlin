@@ -1,10 +1,10 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-	id("org.springframework.boot") version "2.3.2.RELEASE"
-	id("io.spring.dependency-management") version "1.0.9.RELEASE"
-	kotlin("jvm") version "1.3.72"
-	kotlin("plugin.spring") version "1.3.72"
+	id("org.springframework.boot") version "2.6.0-M3"
+	id("io.spring.dependency-management") version "1.0.11.RELEASE"
+	kotlin("jvm") version "1.5.31"
+	kotlin("plugin.spring") version "1.5.31"
 }
 
 group = "net.razvan.poc.spring-boot"
@@ -17,7 +17,7 @@ repositories {
 }
 
 // versions
-val mockkVersion = "1.10.0"
+val mockkVersion = "1.12.0"
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
@@ -36,9 +36,9 @@ dependencies {
 	runtimeOnly("mysql:mysql-connector-java")
 	runtimeOnly("org.postgresql:postgresql")
 
-	testImplementation("org.springframework.boot:spring-boot-starter-test") {
-		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
-	}
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("io.projectreactor:reactor-test")
+
 	testImplementation("io.projectreactor:reactor-test")
 	testImplementation("io.mockk:mockk:$mockkVersion")
 	testImplementation("org.testcontainers:postgresql:1.14.3")

@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.data.r2dbc.DataR2dbcTest
 import org.springframework.core.io.DefaultResourceLoader
 import org.springframework.core.io.ResourceLoader
-import org.springframework.data.r2dbc.connectionfactory.init.ResourceDatabasePopulator
+import org.springframework.r2dbc.connection.init.ResourceDatabasePopulator
 import org.springframework.test.context.ContextConfiguration
 import reactor.kotlin.core.publisher.toFlux
 import java.util.stream.Stream
@@ -37,7 +37,7 @@ internal class UserServiceIT(
             resourceLoader.getResource("classpath:schema.sql"),
             resourceLoader.getResource("classpath:data.sql")
         )
-        ResourceDatabasePopulator(*scripts).execute(connectionFactory).block()
+        ResourceDatabasePopulator(*scripts).populate(connectionFactory).block()
     }
 
     @BeforeAll
