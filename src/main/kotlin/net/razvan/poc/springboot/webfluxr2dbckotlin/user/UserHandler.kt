@@ -12,7 +12,7 @@ class UserHandler(val service: UserService) {
 
     suspend fun findAll(request: ServerRequest): ServerResponse {
         val users = service.findAll()
-        return ServerResponse.ok().json().bodyAndAwait(users)
+        return ServerResponse.ok().buildAndAwait() //.json().bodyAndAwait(users)
     }
 
     suspend fun search(request: ServerRequest): ServerResponse {

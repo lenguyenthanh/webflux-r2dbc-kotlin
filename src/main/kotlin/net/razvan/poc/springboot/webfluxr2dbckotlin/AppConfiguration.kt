@@ -1,7 +1,11 @@
 package net.razvan.poc.springboot.webfluxr2dbckotlin
 
+import arrow.endpoint.spring.server.routerFunction
 import io.r2dbc.spi.ConnectionFactory
+import net.razvan.poc.springboot.webfluxr2dbckotlin.protocol.endpoints
+import net.razvan.poc.springboot.webfluxr2dbckotlin.protocol.usersEndpoint
 import net.razvan.poc.springboot.webfluxr2dbckotlin.user.UserHandler
+import net.razvan.poc.springboot.webfluxr2dbckotlin.user.UserService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.io.ClassPathResource
@@ -26,6 +30,11 @@ class AppConfiguration {
     }
 
     @Bean
+    fun usersRoute(service: UserService) = routerFunction(
+        service.endpoints()
+    )
+
+    @Bean
     fun initializer(connectionFactory: ConnectionFactory): ConnectionFactoryInitializer {
         val initializer = ConnectionFactoryInitializer()
         initializer.setConnectionFactory(connectionFactory)
@@ -36,5 +45,3 @@ class AppConfiguration {
         return initializer
     }
 }
-
-

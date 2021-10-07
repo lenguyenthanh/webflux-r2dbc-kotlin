@@ -5,15 +5,17 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.11.RELEASE"
 	kotlin("jvm") version "1.5.31"
 	kotlin("plugin.spring") version "1.5.31"
+	kotlin("plugin.serialization") version "1.5.31"
 }
 
 group = "net.razvan.poc.spring-boot"
 version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_11
+java.sourceCompatibility = JavaVersion.VERSION_15
 
 repositories {
 	mavenCentral()
 	maven { url = uri("https://repo.spring.io/milestone") }
+	maven { url = uri("https://jitpack.io") }
 }
 
 // versions
@@ -28,6 +30,17 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+
+	// Arrows
+	implementation(platform("io.arrow-kt:arrow-stack:1.0.0"))
+	implementation("io.arrow-kt:arrow-core")
+	implementation("io.arrow-kt:arrow-fx-coroutines")
+	implementation("com.github.lenguyenthanh.Arrow-Endpoint:core:375d5288fb")
+	implementation("com.github.lenguyenthanh.Arrow-Endpoint:spring-web-server:375d5288fb")
+
+	// Json
+	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0")
+
 	runtimeOnly("com.h2database:h2")
 	runtimeOnly("io.r2dbc:r2dbc-h2")
 
@@ -53,6 +66,6 @@ tasks.withType<Test> {
 tasks.withType<KotlinCompile> {
 	kotlinOptions {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
-		jvmTarget = "11"
+		jvmTarget = "15"
 	}
 }

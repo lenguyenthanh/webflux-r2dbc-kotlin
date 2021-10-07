@@ -2,12 +2,13 @@ package net.razvan.poc.springboot.webfluxr2dbckotlin.user
 
 import kotlinx.coroutines.reactive.asFlow
 import kotlinx.coroutines.reactive.awaitFirstOrNull
+import kotlinx.coroutines.reactive.awaitSingle
 import org.springframework.stereotype.Service
 
 @Service
 class UserService(private val repo: UserRepository) {
 
-    suspend fun findAll() = repo.findAll().asFlow()
+    suspend fun findAll(): List<User> = repo.findAll().buffer().awaitSingle()
     suspend fun findById(id: Long) = repo.findById(id).awaitFirstOrNull()
     suspend fun findByEmail(email: String) = repo.findByEmail(email).asFlow()
     suspend fun addOne(user: UserDTO) = repo.save(user.toModel()).awaitFirstOrNull()
